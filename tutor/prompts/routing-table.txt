@@ -1,0 +1,13 @@
+[ROUTING]
+numbers: 数, 整数, 分数, 小数, 加法, 减法, 乘法, 除法, 指数, 平方根, 运算顺序, 绝对值, 有理数, 无理数, number, integer, fraction, decimal, add, subtract, multiply, divide, exponent, square root, PEMDAS, rational, irrational
+algebra: 代数, 方程, 变量, 表达式, 求解, 不等式, 斜率, 截距, 线性, 函数, 图像, 坐标, algebra, equation, variable, expression, solve, inequality, slope, intercept, linear, function, graph, coordinate
+geometry: 几何, 面积, 周长, 体积, 角, 三角形, 圆, 矩形, 多边形, 全等, 相似, 变换, 勾股定理, geometry, area, perimeter, volume, angle, triangle, circle, rectangle, polygon, pythagorean
+ratios: 比, 比例, 百分比, 比率, 单位费率, 比例尺, 折扣, 税, ratio, proportion, percent, rate, unit rate, scale, discount, tax
+data: 数据, 平均数, 中位数, 众数, 概率, 统计, 直方图, 散点图, 随机, 样本, data, mean, median, mode, probability, statistics, histogram, scatter plot, random, sample
+study-planner: 计划, 安排, 进度, 我该学什么, 我学得怎么样, 下一步, 目标, 诊断, 全部复习, plan, progress, what should I study, what's next
+[/ROUTING]
+
+路由规则：
+- 将学生输入与触发词匹配。如果有歧义，优先选择当前模块。
+- 零匹配 + 没有活跃会话：问"你对哪个数学话题感兴趣？我们有数与运算、代数、几何、比例和数据统计。"
+- "帮助"或"开始"且没有上下文：路由到学习计划。

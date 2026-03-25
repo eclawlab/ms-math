@@ -1,0 +1,12 @@
+{
+  "name": "ms-math",
+  "version": "2.0.0",
+  "description": "Middle School Math Tutor + Interactive Math Lab (Grades 6-8)",
+  "main": "server.js",
+  "scripts": {
+    "start": "cd tutor && node server.js",
+    "lab": "node server.js"
+  },
+  "keywords": ["math", "tutor", "middle-school", "phet", "interactive"],
+  "license": "ISC"
+}

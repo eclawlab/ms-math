@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初中数学导师 — 数学课堂</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <div class="login-card">
+      <h1>数学课堂</h1>
+      <p class="subtitle">选择你的导师，开始学习数学 — 6-8年级</p>
+      <input type="text" id="login-name" placeholder="你的名字是？" autocomplete="off" autofocus>
+      <select id="login-grade">
+        <option value="grade-6">6年级</option>
+        <option value="grade-7" selected>7年级</option>
+        <option value="grade-8">8年级</option>
+      </select>
+
+      <div class="tutor-selection">
+        <p class="tutor-selection-label">选择你的导师</p>
+        <div class="tutor-cards">
+          <div class="tutor-card selected" data-tutor="methodical">
+            <div class="tutor-avatar">📐</div>
+            <div class="tutor-name">艾老师</div>
+            <div class="tutor-style">循序渐进型</div>
+            <div class="tutor-desc">耐心细致，一步一步带你学</div>
+          </div>
+          <div class="tutor-card" data-tutor="competitive">
+            <div class="tutor-avatar">🏆</div>
+            <div class="tutor-name">马老师</div>
+            <div class="tutor-style">挑战激励型</div>
+            <div class="tutor-desc">用挑战和竞争激发动力</div>
+          </div>
+          <div class="tutor-card" data-tutor="creative">
+            <div class="tutor-avatar">🎨</div>
+            <div class="tutor-name">苏老师</div>
+            <div class="tutor-style">故事创意型</div>
+            <div class="tutor-desc">用故事和生活让数学变有趣</div>
+          </div>
+        </div>
+      </div>
+
+      <button id="login-btn">开始学习</button>
+    </div>
+  </div>
+
+  <!-- App Screen -->
+  <div id="app-screen">
+    <div class="app-layout">
+
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <span class="logo">数学导师 <small style="font-size:11px;color:var(--text-muted);font-weight:400;">v2.0</small></span>
+        <span class="student-info" id="student-info"></span>
+        <div class="domain-nav">
+          <button class="domain-btn" data-domain="numbers">数与运算</button>
+          <button class="domain-btn" data-domain="algebra">代数</button>
+          <button class="domain-btn" data-domain="geometry">几何</button>
+          <button class="domain-btn" data-domain="ratios">比例</button>
+          <button class="domain-btn" data-domain="data">数据</button>
+        </div>
+        <button class="lab-toggle-btn" id="lab-toggle-btn" title="数学实验室">📐 实验室</button>
+      </div>
+
+      <!-- Chat Panel -->
+      <div class="chat-panel">
+        <div class="chat-messages" id="chat-messages">
+          <div class="typing-indicator" id="typing">
+            <div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="输入你的答案或提问..." autocomplete="off">
+            <button id="send-btn">发送</button>
+          </div>
+          <div class="quick-actions">
+            <button class="quick-btn" data-msg="查看我的进度">进度</button>
+            <button class="quick-btn" data-msg="我接下来学什么？">下一步</button>
+            <button class="quick-btn" data-msg="给我一个提示">提示</button>
+            <button class="quick-btn" data-msg="开始实验">实验</button>
+            <button class="quick-btn" data-msg="做一个CER练习">CER</button>
+            <button class="quick-btn" data-msg="复习到期的知识点">复习</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Math Lab Panel (slides in from left, replaces chat) -->
+      <div class="lab-panel" id="lab-panel">
+        <div class="lab-header">
+          <h2>📐 数学实验室</h2>
+          <div class="lab-search-wrap">
+            <input type="text" id="lab-search" placeholder="搜索模拟实验..." autocomplete="off">
+          </div>
+          <button class="lab-close-btn" id="lab-close-btn">返回对话</button>
+        </div>
+        <div class="lab-topics" id="lab-topics">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- Sim overlay (fullscreen iframe) -->
+      <div class="sim-overlay" id="sim-overlay">
+        <div class="sim-overlay-bar">
+          <span class="sim-overlay-title" id="sim-overlay-title"></span>
+          <button class="sim-overlay-close" id="sim-overlay-close" title="关闭">✕</button>
+        </div>
+        <iframe id="sim-frame" allowfullscreen></iframe>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h2>你的进度</h2>
+        <div id="mastery-bars"></div>
+
+        <h3>当前会话</h3>
+        <div class="session-info" id="session-info">
+          <div class="session-stat">
+            <span class="label">模块</span>
+            <span class="value" id="info-module">—</span>
+          </div>
+          <div class="session-stat">
+            <span class="label">知识点</span>
+            <span class="value" id="info-skill">—</span>
+          </div>
+          <div class="session-stat">
+            <span class="label">阶段</span>
+            <span class="value" id="info-phase">—</span>
+          </div>
+          <div class="session-stat">
+            <span class="label">连对</span>
+            <span class="value" id="info-streak">0</span>
+          </div>
+        </div>
+
+        <h3>最近成绩</h3>
+        <div id="recent-results"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
